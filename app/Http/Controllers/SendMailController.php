@@ -2,9 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Mail\SendMail;
+use App\jobs\SendMailJob;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Mail;
 
 class SendMailController extends Controller
 {
@@ -15,7 +14,7 @@ class SendMailController extends Controller
 
     function store(Request $request)
     {
-        Mail::to($request->email)->send(new SendMail($request));
+        dispatch(new SendMailJob((object)$request->all()));
 
         return back();
     }

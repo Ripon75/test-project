@@ -24,10 +24,10 @@ class SendMail extends Mailable
         $this->request = $request;
     }
 
-    function build()
-    {
-        return $this->markdown('emails.send')->subject(config("app.name"));
-    }
+    // function build()
+    // {
+    //     return $this->markdown('emails.send');
+    // }
 
     /**
      * Get the message envelope.
@@ -35,7 +35,7 @@ class SendMail extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Send Mail',
+            subject: 'Welcome',
         );
     }
 
@@ -45,7 +45,7 @@ class SendMail extends Mailable
     public function content(): Content
     {
         return new Content(
-            view: 'view.name',
+            view: 'emails.send',
         );
     }
 
