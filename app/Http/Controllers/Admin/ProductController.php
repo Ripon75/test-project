@@ -58,4 +58,21 @@ class ProductController extends Controller
             "message" => "Product update successfully",
         ], 200);
     }
+
+    public function delete($id)
+    {
+        $product = Product::find($id);
+
+        if (!$product) {
+            return false;
+        }
+
+        $product->delete();
+
+        return response()->json([
+            "success" => true,
+            "data"    => null,
+            "message" => "Product deleted successfully",
+        ], 200);
+    }
 }

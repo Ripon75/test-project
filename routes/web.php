@@ -18,5 +18,5 @@ Route::get("admin/products",         [ProductController::class, "index"]);
 Route::post("admin/products",        [ProductController::class, "store"]);
 Route::get("admin/products/{id}",    [ProductController::class, "show"]);
 Route::put("admin/products/{id}",    [ProductController::class, "edit"]);
-Route::put("admin/products/{id}", [ProductController::class, "update"]);
+Route::delete("admin/products/{id}", [ProductController::class, "delete"]);
 

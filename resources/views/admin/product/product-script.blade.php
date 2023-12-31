@@ -1,5 +1,6 @@
 <script>
     $(document).ready(function() {
+        // Product create
         $(document).on("click", "#btnAddProduct", function(e) {
             e.preventDefault();
 
@@ -33,6 +34,7 @@
             })
         });
 
+        // Update edit form
         $(document).on("click", "#btnProductUpdate", function() {
             // Get data dash value
             let id    = $(this).data("product-id");
@@ -45,6 +47,7 @@
             $("#inputUpdatePrice").val(price);
         });
 
+        // Product update
         $(document).on("click", "#btnUpdateProduct", function(e) {
             e.preventDefault();
 
@@ -76,6 +79,28 @@
                     }
                 }
             })
-        })
+        });
+
+        // Product delete
+        $(document).on("click", "#btnProductDelete", function(e) {
+            e.preventDefault();
+            let id = $(this).data("product-id");
+
+            if (confirm("Are you sure to delete product ?")) {
+                $.ajax({
+                    url: "/admin/products/" + id,
+                    type: "delete",
+                    dataType: "json",
+                    success: function(res) {
+                        if (res.success) {
+                            $(".table").load(location.href + " .table");
+                        }
+                    },
+                    error: function(err) {
+                        console.log(err);
+                    }
+                })
+            }
+        });
     })
 </script>

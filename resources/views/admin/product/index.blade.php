@@ -60,7 +60,10 @@
                                             data-product-price="{{ $product->price }}">
                                             <i class="fa-solid fa-pen-to-square"></i>
                                         </a>
-                                        <a href="" class="btn btn-danger">
+                                        <a href=""
+                                            id="btnProductDelete"
+                                            data-product-id="{{ $product->id }}"
+                                            class="btn btn-danger">
                                             <i class="fa-solid fa-trash-can-arrow-up"></i>
                                         </a>
                                     </td>
