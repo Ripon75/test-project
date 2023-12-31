@@ -20,6 +20,7 @@
                         $("#addProductModal").modal("hide");
                         $("#addProductForm")[0].reset();
                         $(".table").load(location.href + " .table");
+                        showNotification(res.message);
                     }
                 },
                 error: function(err) {
@@ -67,6 +68,7 @@
                     if (res.success) {
                         $("#editProductModal").modal("hide");
                         $(".table").load(location.href + " .table");
+                        showNotification(res.message);
                     }
                 },
                 error: function(err) {
@@ -94,6 +96,7 @@
                     success: function(res) {
                         if (res.success) {
                             $(".table").load(location.href + " .table");
+                            showNotification(res.message);
                         }
                     },
                     error: function(err) {
@@ -103,4 +106,26 @@
             }
         });
     })
+
+    function showNotification(message) {
+        Command: toastr["success"](message, "Success")
+
+        toastr.options = {
+        "closeButton": false,
+        "debug": false,
+        "newestOnTop": false,
+        "progressBar": true,
+        "positionClass": "toast-top-right",
+        "preventDuplicates": false,
+        "onclick": null,
+        "showDuration": "300",
+        "hideDuration": "1000",
+        "timeOut": "5000",
+        "extendedTimeOut": "1000",
+        "showEasing": "swing",
+        "hideEasing": "linear",
+        "showMethod": "fadeIn",
+        "hideMethod": "fadeOut"
+        }
+    }
 </script>
