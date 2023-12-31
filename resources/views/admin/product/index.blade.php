@@ -44,28 +44,41 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <th scope="row">1</th>
-                                <td>Mark</td>
-                                <td>Otto</td>
-                                <td>
-                                    <button class="btn btn-primary">
-                                        <i class="fa-solid fa-pen-to-square"></i>
-                                    </button>
-                                    <button class="btn btn-danger">
-                                        <i class="fa-solid fa-pen-to-square"></i>
-                                    </button>
-                                </td>
-                            </tr>
+                            @foreach ($products as $key => $product)
+                                <tr>
+                                    <th scope="row">{{ $key + 1 }}</th>
+                                    <td>{{ $product->name }}</td>
+                                    <td>{{ $product->price }}</td>
+                                    <td>
+                                        <a href=""
+                                            id="btnProductUpdate"
+                                            class="btn btn-primary"
+                                            data-bs-toggle="modal"
+                                            data-bs-target="#editProductModal"
+                                            data-product-id="{{ $product->id }}"
+                                            data-product-name="{{ $product->name }}"
+                                            data-product-price="{{ $product->price }}">
+                                            <i class="fa-solid fa-pen-to-square"></i>
+                                        </a>
+                                        <a href="" class="btn btn-danger">
+                                            <i class="fa-solid fa-trash-can-arrow-up"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                            @endforeach
                         </tbody>
                     </table>
+                    {!! $products->links() !!}
                 </div>
             </div>
         </div>
     </div>
 
     {{-- Load create modal --}}
-    @include("admin.product.create")
+    @include("admin.product.create-modal")
+
+    {{-- Load edit modal --}}
+    @include("admin.product.edit-modal")
 
     {{-- Load script --}}
     @include("admin.layout.script")

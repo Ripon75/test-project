@@ -2,6 +2,8 @@
 <div class="modal fade" id="addProductModal" tabindex="-1" aria-labelledby="addModalLable" aria-hidden="true">
     {{-- Modal form --}}
     <form action="" method="POST" id="addProductForm">
+        @csrf
+
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -12,13 +14,13 @@
                     <div class="form-group">
                         <label for="name">Name</label>
                         <input type="text" name="price" class="form-control" id="inputName" placeholder="Name">
-                        <span id="nameErrorMessage"></span>
+                        <span class="text-danger" id="nameErrorMessage"></span>
                     </div>
 
                     <div class="form-group mt-2">
                         <label for="price">Price</label>
-                        <input type="text" name="price" class="form-control" id="inputPrice" placeholder="Price">
-                        <span id="priceErrorMessage"></span>
+                        <input type="number" name="price" class="form-control" id="inputPrice" placeholder="Price">
+                        <span class="text-danger" id="priceErrorMessage"></span>
                     </div>
                 </div>
                 <div class="modal-footer">

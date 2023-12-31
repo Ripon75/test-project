@@ -1,8 +1,8 @@
 <?php
 
-use App\Http\Controllers\Admin\ProductController;
-use App\Http\Controllers\SendMailController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\SendMailController;
+use App\Http\Controllers\Admin\ProductController;
 
 
 Route::get('/', function () {
@@ -15,7 +15,8 @@ Route::post('send-email', [SendMailController::class, 'store'])->name('store.mai
 
 // Admin route
 Route::get("admin/products",         [ProductController::class, "index"]);
-Route::post("admin/products",        [ProductController::class, "index"]);
-Route::put("admin/products/{id}",    [ProductController::class, "index"]);
-Route::delete("admin/products/{id}", [ProductController::class, "index"]);
+Route::post("admin/products",        [ProductController::class, "store"]);
+Route::get("admin/products/{id}",    [ProductController::class, "show"]);
+Route::put("admin/products/{id}",    [ProductController::class, "edit"]);
+Route::put("admin/products/{id}", [ProductController::class, "update"]);
 
