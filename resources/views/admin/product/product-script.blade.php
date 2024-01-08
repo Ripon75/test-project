@@ -105,27 +105,52 @@
                 })
             }
         });
-    })
 
-    function showNotification(message) {
-        Command: toastr["success"](message, "Success")
+        // Pagination
+        // $(document).on("click", ".pagination a", function(e) {
+        //     e.preventDefault();
 
-        toastr.options = {
-        "closeButton": false,
-        "debug": false,
-        "newestOnTop": false,
-        "progressBar": true,
-        "positionClass": "toast-top-right",
-        "preventDuplicates": false,
-        "onclick": null,
-        "showDuration": "300",
-        "hideDuration": "1000",
-        "timeOut": "5000",
-        "extendedTimeOut": "1000",
-        "showEasing": "swing",
-        "hideEasing": "linear",
-        "showMethod": "fadeIn",
-        "hideMethod": "fadeOut"
+        //     let page = $(this).attr("href").split("page=")[1];
+        //     console.log(page);
+        //     pagination(page)
+
+        // });
+
+        function pagination(page) {
+            $.ajax({
+                url: `/admin/pagination/products?page=${page}`,
+                type: "get",
+                dataType: "json",
+                success: function(res) {
+                    console.log(res);
+                    $(".table-data").html(res);
+                },
+                error: function(err) {
+                    console.log(err);
+                }
+            })
         }
-    }
+
+        function showNotification(message) {
+            Command: toastr["success"](message, "Success")
+
+            toastr.options = {
+            "closeButton": false,
+            "debug": false,
+            "newestOnTop": false,
+            "progressBar": true,
+            "positionClass": "toast-top-right",
+            "preventDuplicates": false,
+            "onclick": null,
+            "showDuration": "300",
+            "hideDuration": "1000",
+            "timeOut": "5000",
+            "extendedTimeOut": "1000",
+            "showEasing": "swing",
+            "hideEasing": "linear",
+            "showMethod": "fadeIn",
+            "hideMethod": "fadeOut"
+            }
+        }
+    })
 </script>

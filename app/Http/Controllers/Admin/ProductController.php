@@ -75,4 +75,11 @@ class ProductController extends Controller
             "message" => "Product deleted successfully",
         ], 200);
     }
+
+    public function paginationData()
+    {
+        $products = Product::latest()->paginate(5);
+
+        return view("admin.product.pagination-products", compact("products"))->render();
+    }
 }
