@@ -116,20 +116,20 @@
 
         // });
 
-        function pagination(page) {
-            $.ajax({
-                url: `/admin/pagination/products?page=${page}`,
-                type: "get",
-                dataType: "json",
-                success: function(res) {
-                    console.log(res);
-                    $(".table-data").html(res);
-                },
-                error: function(err) {
-                    console.log(err);
-                }
-            })
-        }
+        // function pagination(page) {
+        //     $.ajax({
+        //         url: `/admin/pagination/products?page=${page}`,
+        //         type: "get",
+        //         dataType: "json",
+        //         success: function(res) {
+        //             console.log(res);
+        //             $(".table-data").html(res);
+        //         },
+        //         error: function(err) {
+        //             console.log(err);
+        //         }
+        //     })
+        // }
 
         function showNotification(message) {
             Command: toastr["success"](message, "Success")

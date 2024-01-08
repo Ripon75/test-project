@@ -30,24 +30,23 @@
         @yield('content')
     </div>
 
-    {{-- Social contact --}}
-    <!-- Buttons -->
+    <!-- Social media -->
     <a href="#" class="float">
         <i class="fa fa-plus icon"></i>
     </a>
-    <ul>
-        <li>
+    <div class="submenu">
+        <div>
             <a href="https://m.me/riponahmedjr" target="_blank">
                 <i class="fa-brands fa-facebook-messenger icon"></i>
             </a>
-        </li>
-        <li>
+        </div>
+        <div>
             <a href="https://wa.me/+8801764997485" target="_blank">
                 <i class="fa-brands fa-whatsapp icon"></i>
             </a>
-        </li>
-    </ul>
-    <!-- End - Buttons -->
+        </div>
+    </div>
+    <!-- End social media -->
 
     {{-- Load script --}}
     @include("admin.layout.script")
