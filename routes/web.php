@@ -19,7 +19,7 @@ Route::post("admin/products",        [ProductController::class, "store"]);
 Route::get("admin/products/{id}",    [ProductController::class, "show"]);
 Route::put("admin/products/{id}",    [ProductController::class, "update"]);
 Route::delete("admin/products/{id}", [ProductController::class, "delete"]);
-Route::get("admin/pagination/products", [ProductController::class, "paginationData"]);
+Route::get("admin/pagination/products", [ProductController::class, "paginationData"])->name('paginate.data');
 
 Route::get("admin/google-map", [GoogleMapController::class, "index"]);
 

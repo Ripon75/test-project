@@ -76,9 +76,19 @@ class ProductController extends Controller
         ], 200);
     }
 
-    public function paginationData()
+    public function paginationData(Request $request)
     {
-        $products = Product::latest()->paginate(5);
+        $searchKey = $request->input('search_key', null);
+
+        $products = Product::when($searchKey, fn($query) => $query->where("name", "like", "%$searchKey%"))
+            ->latest()->paginate(5);
+
+        if ($request->ajax()) {
+            return response()->json([
+                "data"   => $products,
+                "status" => "success"
+            ]);
+        }
 
         return view("admin.product.pagination-products", compact("products"))->render();
     }

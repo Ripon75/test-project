@@ -106,6 +106,52 @@
             }
         });
 
+        $("#input-search").keyup(function() {
+            var searchKey = $(this).val();
+            $.ajax({
+                url: "{{ route('paginate.data') }}",
+                method: "GET",
+                data: {
+                    search_key: searchKey
+                },
+                success: function (res) {
+                    if (res.data.data.length > 0) {
+                        var products = res.data.data;
+                        var html = '';
+
+                        $.each(products, function(index, product) {
+                            html += `
+                                <tr>
+                                    <th scope="row">${index + 1} </th>
+                                    <td> ${product.name}</td>
+                                    <td> ${product.price}</td>
+                                    <td>
+                                        <a href="" id="btnProductUpdate" class="btn btn-primary" data-bs-toggle="modal"
+                                            data-bs-target="#editProductModal" data-product-id="${product.id}"
+                                            data-product-name="${product.name}" data-product-price="${product.price}">
+                                            <i class="fa-solid fa-pen-to-square"></i>
+                                        </a>
+                                        <a href="" id="btnProductDelete" data-product-id="${product.id}"
+                                            class="btn btn-danger">
+                                            <i class="fa-solid fa-trash-can-arrow-up"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                            `
+                        });
+
+                        $(".table-body").empty();
+                        $(".table-body").append(html);
+                    } else {
+                        $(".table-body").empty();
+                    }
+                },
+                error: function(error) {
+                    console.log(error);
+                }
+            })
+        })
+
         // Pagination
         // $(document).on("click", ".pagination a", function(e) {
         //     e.preventDefault();
