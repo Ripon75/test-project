@@ -117,6 +117,7 @@
                 success: function (res) {
                     if (res.data.data.length > 0) {
                         var products = res.data.data;
+                        $(".table-body").empty();
                         var html = '';
 
                         $.each(products, function(index, product) {
@@ -140,7 +141,6 @@
                             `
                         });
 
-                        $(".table-body").empty();
                         $(".table-body").append(html);
                     } else {
                         $(".table-body").empty();
