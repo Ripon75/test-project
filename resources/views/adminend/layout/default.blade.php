@@ -49,7 +49,7 @@
     <!-- End social media -->
 
     {{-- Load script --}}
-    @include("admin.layout.script")
+    @include("adminend.layout.script")
 
     {!! Toastr::message() !!}
 

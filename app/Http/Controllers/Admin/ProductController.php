@@ -12,7 +12,7 @@ class ProductController extends Controller
     {
         $products = Product::latest()->paginate(5);
 
-        return view("admin.product.index", compact("products"));
+        return view("adminend.pages.product.index", compact("products"));
     }
 
     public function store(Request $request)
@@ -90,6 +90,6 @@ class ProductController extends Controller
             ]);
         }
 
-        return view("admin.product.pagination-products", compact("products"))->render();
+        return view("adminend.pages.product.pagination-products", compact("products"))->render();
     }
 }

@@ -17,9 +17,16 @@
                 },
                 success: function(res) {
                     if (res.success) {
+                        // Hide modal
                         $("#addProductModal").modal("hide");
+
+                        // Reset modal form data
                         $("#addProductForm")[0].reset();
+
+                        // Show created data without reload
                         $(".table").load(location.href + " .table");
+
+                        // Show toaster notification
                         showNotification(res.message);
                     }
                 },
@@ -36,7 +43,7 @@
         });
 
         // Update edit form
-        $(document).on("click", "#btnProductUpdate", function() {
+        $(document).on("click", "#btnEditProductModal", function() {
             // Get data dash value
             let id    = $(this).data("product-id");
             let name  = $(this).data("product-name");
@@ -66,8 +73,13 @@
                 },
                 success: function(res) {
                     if (res.success) {
+                        // Hide mdal
                         $("#editProductModal").modal("hide");
+
+                        // Show created data without reload
                         $(".table").load(location.href + " .table");
+
+                        // Show toaster notification
                         showNotification(res.message);
                     }
                 },
@@ -88,22 +100,42 @@
             e.preventDefault();
             let id = $(this).data("product-id");
 
-            if (confirm("Are you sure to delete product ?")) {
-                $.ajax({
-                    url: "/admin/products/" + id,
-                    type: "delete",
-                    dataType: "json",
-                    success: function(res) {
-                        if (res.success) {
-                            $(".table").load(location.href + " .table");
-                            showNotification(res.message);
+            Swal.fire({
+                title: "Are you sure?",
+                text: "You won't be able to revert this!",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Yes, delete it!"
+                }).then((result) => {
+                if (result.isConfirmed) {
+                    $.ajax({
+                        url: "/admin/products/" + id,
+                        type: "delete",
+                        dataType: "json",
+                        success: function(res) {
+                            if (res.success) {
+
+                                // Show created data without reload
+                                $(".table").load(location.href + " .table");
+
+                                // Show toaster notification
+                                showNotification(res.message);
+                            }
+                        },
+                        error: function(err) {
+                            console.log(err);
                         }
-                    },
-                    error: function(err) {
-                        console.log(err);
-                    }
-                })
-            }
+                    })
+
+                    Swal.fire({
+                    title: "Deleted!",
+                    text: "Your file has been deleted.",
+                    icon: "success"
+                    });
+                }
+            });
         });
 
         $("#input-search").keyup(function() {
@@ -127,7 +159,7 @@
                                     <td> ${product.name}</td>
                                     <td> ${product.price}</td>
                                     <td>
-                                        <a href="" id="btnProductUpdate" class="btn btn-primary" data-bs-toggle="modal"
+                                        <a href="" id="btnEditProductModal" class="btn btn-primary" data-bs-toggle="modal"
                                             data-bs-target="#editProductModal" data-product-id="${product.id}"
                                             data-product-name="${product.name}" data-product-price="${product.price}">
                                             <i class="fa-solid fa-pen-to-square"></i>

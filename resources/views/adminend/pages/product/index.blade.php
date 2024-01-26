@@ -1,4 +1,4 @@
-@extends('admin.layout.default')
+@extends('adminend.layout.default')
 
 @section('title')
     Product list
@@ -40,7 +40,7 @@
                                 <td>{{ $product->name }}</td>
                                 <td>{{ $product->price }}</td>
                                 <td>
-                                    <a href="" id="btnProductUpdate" class="btn btn-primary" data-bs-toggle="modal"
+                                    <a href="" id="btnEditProductModal" class="btn btn-primary" data-bs-toggle="modal"
                                         data-bs-target="#editProductModal" data-product-id="{{ $product->id }}"
                                         data-product-name="{{ $product->name }}" data-product-price="{{ $product->price }}">
                                         <i class="fa-solid fa-pen-to-square"></i>
@@ -60,13 +60,13 @@
     </div>
 
     {{-- Load create modal --}}
-    @include("admin.product.create-modal")
+    @include("adminend.pages.product.create-modal")
 
     {{-- Load edit modal --}}
-    @include("admin.product.edit-modal")
+    @include("adminend.pages.product.edit-modal")
 @endsection
 
 @push('scripts')
     {{-- Load product crud script --}}
-    @include("admin.product.product-script")
+    @include("adminend.pages.product.product-script")
 @endpush
