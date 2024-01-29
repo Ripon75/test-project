@@ -11,4 +11,14 @@ class TestController extends Controller
     {
         return view("adminend.pages.test.test-design");
     }
+
+    function postCreate()
+    {
+        return view("adminend.pages.test.show-toaster-message");
+    }
+
+    function postStore(Request $request)
+    {
+        return back()->with("success", "Test flash message");
+    }
 }

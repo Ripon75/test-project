@@ -26,4 +26,7 @@ Route::prefix("admin")->group(function() {
     Route::get("google-map", [GoogleMapController::class, "index"]);
 
     Route::get("test-design", [TestController::class, "testDesign"]);
+
+    Route::get("posts", [TestController::class, "postCreate"])->name("post.create");
+    Route::post("posts", [TestController::class, "postStore"])->name("post.store");
 });
