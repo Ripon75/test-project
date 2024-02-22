@@ -209,6 +209,51 @@
         //     })
         // }
 
+
+        // jquery autocomplate search
+        var availableTags = [
+            "ActionScript",
+            "AppleScript",
+            "Asp",
+            "BASIC",
+            "C",
+            "C++",
+            "Clojure",
+            "COBOL",
+            "ColdFusion",
+            "Erlang",
+            "Fortran",
+            "Groovy",
+            "Haskell",
+            "Java",
+            "JavaScript",
+            "Lisp",
+            "Perl",
+            "PHP",
+            "Python",
+            "Ruby",
+            "Scala",
+            "Scheme"
+        ];
+
+        function autocompleteProduct(availableProducts)
+        {
+            $( "#product_search" ).autocomplete({
+                source: availableProducts
+            });
+        }
+
+        $.ajax({
+            url: "/admin/autocomplete-products",
+            type: "get",
+            success: function(res) {
+                autocompleteProduct(res);
+            },
+            error: function(error) {
+                console.log(error);
+            }
+        })
+
         function showNotification(message) {
             Command: toastr["success"](message, "Success")
 
@@ -231,4 +276,5 @@
             }
         }
     })
+
 </script>

@@ -59,6 +59,11 @@ class ProductController extends Controller
         ], 200);
     }
 
+    public function show()
+    {
+        return "Show";
+    }
+
     public function delete($id)
     {
         $product = Product::find($id);
@@ -91,5 +96,10 @@ class ProductController extends Controller
         }
 
         return view("adminend.pages.product.pagination-products", compact("products"))->render();
+    }
+
+    public function autocompleteProducts()
+    {
+        return Product::pluck('name')->toArray();
     }
 }

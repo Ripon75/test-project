@@ -15,13 +15,28 @@
                 <i class="fa-solid fa-plus"></i>
                 Add
             </a>
-            <input
-                type="text"
-                class="form-control"
-                placeholder="Product search"
-                aria-label="Username"
-                id="input-search"
-            >
+
+            <div class="row d-flex mb-5">
+                {{-- Product search useing jquery --}}
+                <div class="col-md-6">
+                    <input
+                        type="search"
+                        class="form-control"
+                        placeholder="Product search"
+                        aria-label="Username"
+                        id="input-search"
+                    >
+                </div>
+                <div class="col-md-6">
+                    <input
+                        type="search"
+                        class="form-control w-full"
+                        placeholder="jquery autocomplete"
+                        aria-label="Username"
+                        id="product_search"
+                    >
+                </div>
+            </div>
 
             <div class="table-data mt-2">
                 <table class="table border">
