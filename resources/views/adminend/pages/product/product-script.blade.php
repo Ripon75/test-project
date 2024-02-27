@@ -209,50 +209,66 @@
         //     })
         // }
 
-
         // jquery autocomplate search
-        var availableTags = [
-            "ActionScript",
-            "AppleScript",
-            "Asp",
-            "BASIC",
-            "C",
-            "C++",
-            "Clojure",
-            "COBOL",
-            "ColdFusion",
-            "Erlang",
-            "Fortran",
-            "Groovy",
-            "Haskell",
-            "Java",
-            "JavaScript",
-            "Lisp",
-            "Perl",
-            "PHP",
-            "Python",
-            "Ruby",
-            "Scala",
-            "Scheme"
-        ];
-
-        function autocompleteProduct(availableProducts)
-        {
-            $( "#product_search" ).autocomplete({
-                source: availableProducts
-            });
-        }
-
         $.ajax({
             url: "/admin/autocomplete-products",
             type: "get",
-            success: function(res) {
-                autocompleteProduct(res);
+            success: function(response) {
+                $("#product_search").autocomplete({
+                    source: response.map(product => ({
+                        label: product.name,
+                        value: product.id
+                    })),
+                    select: function(event, ui) {
+                        event.preventDefault();
+
+                        var productId = ui.item.value;
+                        getSelectedProduct(productId);
+                    },
+                    focus: function(event, ui) {
+                        event.preventDefault();
+                    }
+                });
             },
             error: function(error) {
                 console.log(error);
             }
-        })
+        });
+
+        function getSelectedProduct(productId) {
+            $.ajax({
+                url: "/admin/get-selected-product",
+                type: "get",
+                data: {
+                    product_id: productId
+                },
+                success: function(response) {
+                    // make row by javascript
+                    // var newRow = `
+                    //     <tr>
+                    //         <td> ${response.id} </td>
+                    //         <td> ${response.name} </td>
+                    //         <td> ${response.price} </td>
+                    //         <td>
+                    //             <a href="" id="btnEditProductModal" class="btn btn-primary" data-bs-toggle="modal"
+                    //                 data-bs-target="#editProductModal" data-product-id=" ${response.id}"
+                    //                 data-product-name="${response.name}" data-product-price="${response.price}">
+                    //                 <i class="fa-solid fa-pen-to-square"></i>
+                    //             </a>
+                    //             <a href="" id="btnProductDelete" data-product-id="${response.id}"
+                    //                 class="btn btn-danger">
+                    //                 <i class="fa-solid fa-trash-can-arrow-up"></i>
+                    //             </a>
+                    //         </td>
+                    //     </tr>
+                    // `
+                    $(".table-body").prepend(response);
+                },
+                error: function(error) {
+                    console.log(error);
+                }
+            })
+        }
 
         function showNotification(message) {
             Command: toastr["success"](message, "Success")
@@ -276,5 +292,4 @@
             }
         }
     })
-
 </script>

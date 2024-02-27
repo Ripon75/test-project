@@ -100,6 +100,63 @@ class ProductController extends Controller
 
     public function autocompleteProducts()
     {
-        return Product::pluck('name')->toArray();
+        $products = Product::select('id', 'name')->get();
+
+        return response()->json($products);
+    }
+
+    public function getSelectedProduct(Request $request)
+    {
+        $product = Product::find($request->product_id);
+
+        // return response()->json($product);
+
+        // make row by php
+        $newRow = '
+            <tr>
+                <th scope="row">' . $product->id . '</th>
+                <td>' . $product->name . '</td>
+                <td>' . $product->price . '</td>
+                <td>
+                    <a href="" id="btnEditProductModal" class="btn btn-primary" data-bs-toggle="modal"
+                        data-bs-target="#editProductModal" data-product-id="' . $product->id . '"
+                        data-product-name="' . $product->name . '" data-product-price="' . $product->price . '">
+                        <i class="fa-solid fa-pen-to-square"></i>
+                    </a>
+                    <a href="" id="btnProductDelete" data-product-id="' . $product->id . '"
+                        class="btn btn-danger">
+                        <i class="fa-solid fa-trash-can-arrow-up"></i>
+                    </a>
+                </td>
+            </tr>
+        ';
+
+        return $newRow;
+    }
+
+    public function getSelectedProductTest(Request $request)
+    {
+        $product = Product::find($request->product_id);
+
+        $newRow = '
+            <tr>
+                <th scope="row">'.$product->id .'</th>
+                <td>'. $product->name.'</td>
+                <td>'.$product->price.'</td>
+                <td>
+                    <a href="" id="btnEditProductModal" class="btn btn-primary" data-bs-toggle="modal"
+                        data-bs-target="#editProductModal" data-product-id="'. $product->id .'"
+                        data-product-name="'.$product->name.'" data-product-price="'. $product->price.'">
+                        <i class="fa-solid fa-pen-to-square"></i>
+                    </a>
+                    <a href="" id="btnProductDelete" data-product-id="'.$product->id.'"
+                        class="btn btn-danger">
+                        <i class="fa-solid fa-trash-can-arrow-up"></i>
+                    </a>
+                </td>
+            </tr>
+        ';
+
+        return $newRow;
     }
 }
