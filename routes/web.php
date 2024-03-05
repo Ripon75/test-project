@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\FileUploadController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SendMailController;
 use App\Http\Controllers\Admin\TestController;
@@ -34,6 +35,13 @@ Route::prefix("admin")->group(function() {
 
     Route::get("test-design", [TestController::class, "testDesign"]);
 
-    Route::get("posts", [TestController::class, "postCreate"])->name("post.create");
+    Route::get("posts",  [TestController::class, "postCreate"])->name("post.create");
     Route::post("posts", [TestController::class, "postStore"])->name("post.store");
+
+    // File upload
+    Route::get("file/uploads",        [FileUploadController::class, 'index'])->name('file.index');
+    Route::get("file/uploads/create", [FileUploadController::class, 'create'])->name('file.create');
+    Route::post("file/uploads",       [FileUploadController::class, 'store'])->name('file.store');
+    Route::get("file/download/{id}",  [FileUploadController::class, 'download'])->name('file.download');
+    Route::get("file/show/{id}",      [FileUploadController::class, 'show'])->name('file.show');
 });

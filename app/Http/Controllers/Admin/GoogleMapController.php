@@ -9,8 +9,6 @@ class GoogleMapController extends Controller
 {
     public function index()
     {
-        $products = [];
-
-        return view("admin.googleMap.index", compact("products"));
+        return view("adminend.pages.googleMap.index");
     }
 }
