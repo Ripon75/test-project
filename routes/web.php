@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\FileUploadController;
+use App\Http\Controllers\Admin\FullCalenderController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SendMailController;
 use App\Http\Controllers\Admin\TestController;
@@ -44,4 +45,8 @@ Route::prefix("admin")->group(function() {
     Route::post("file/uploads",       [FileUploadController::class, 'store'])->name('file.store');
     Route::get("file/download/{id}",  [FileUploadController::class, 'download'])->name('file.download');
     Route::get("file/show/{id}",      [FileUploadController::class, 'show'])->name('file.show');
+
+    // Full calender
+    Route::get("full-calender",         [FullCalenderController::class, 'index'])->name('full-calender');
+    Route::post('full-calender/action', [FullCalenderController::class, 'action']);
 });
