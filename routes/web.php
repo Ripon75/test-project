@@ -39,6 +39,9 @@ Route::prefix("admin")->group(function() {
     Route::get("posts",  [TestController::class, "postCreate"])->name("post.create");
     Route::post("posts", [TestController::class, "postStore"])->name("post.store");
 
+    // Dynamic form add and removed
+    Route::get("add-items", [TestController::class, "addItem"])->name("add.items");
+
     // File upload
     Route::get("file/uploads",        [FileUploadController::class, 'index'])->name('file.index');
     Route::get("file/uploads/create", [FileUploadController::class, 'create'])->name('file.create');

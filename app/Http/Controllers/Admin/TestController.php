@@ -21,4 +21,9 @@ class TestController extends Controller
     {
         return back()->with("success", "Test flash message");
     }
+
+    public function addItem()
+    {
+        return view("adminend.pages.test.add-item");
+    }
 }
