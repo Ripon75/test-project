@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SendMailController;
 use App\Http\Controllers\Admin\TestController;
+use App\Http\Controllers\Admin\ZoomController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\GoogleMapController;
 use App\Http\Controllers\Admin\FileUploadController;
@@ -51,4 +52,8 @@ Route::prefix("admin")->group(function() {
     // Full calender
     Route::get("full-calender",         [FullCalenderController::class, 'index'])->name('full-calender');
     Route::post('full-calender/action', [FullCalenderController::class, 'action']);
+
+    // Zoom route
+    Route::get("zoon/meeting", [ZoomController::class, "index"]);
+    Route::get("zoon/meeting/create", [ZoomController::class, "create"]);
 });
