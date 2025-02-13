@@ -20,6 +20,9 @@
     {{-- For jquery autocomplete --}}
     <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
 
+    {{-- Jquery cdn --}}
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+
     {{-- Social media css --}}
     <link rel="stylesheet" href="{{ asset("css/social-media.css") }}">
 

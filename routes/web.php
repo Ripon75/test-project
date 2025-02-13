@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\GoogleMapController;
 use App\Http\Controllers\Admin\FileUploadController;
 use App\Http\Controllers\Admin\FullCalenderController;
+use App\Http\Controllers\Admin\NotificationController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -56,4 +57,9 @@ Route::prefix("admin")->group(function() {
     // Zoom route
     Route::get("zoon/meeting", [ZoomController::class, "index"]);
     Route::get("zoon/meeting/create", [ZoomController::class, "create"]);
+
+    // Notification route
+    Route::get("notifications", [NotificationController::class, "index"])->name("notifications");
+    Route::get("send/notifications", [NotificationController::class, "sendNotification"]);
+    Route::get("trigger-event", [NotificationController::class, "triggerEvent"])->name("admin.send.notifications");
 });
