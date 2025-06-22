@@ -2,13 +2,16 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Events\NewOrderPlaced;
+use App\Http\Controllers\Controller;
 
 class TestController extends Controller
 {
     public function testDesign()
     {
+        event(new NewOrderPlaced("sfjlsdfjsldflsdfldsf"));
+
         return view("adminend.pages.test.test-design");
     }
 
