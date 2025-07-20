@@ -1,14 +1,23 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ChatController;
 use App\Http\Controllers\SendMailController;
 use App\Http\Controllers\Admin\TestController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\GoogleMapController;
+use App\Http\Controllers\FacebookMessengerController;
 
 Route::get('/', function () {
     return view('welcome');
 });
+
+
+Route::get('chat',  [ChatController::class, 'index']);
+Route::post('chat/send', [ChatController::class, 'send']);
+
+Route::match(['GET', 'POST'], '/facebook/webhook', [FacebookMessengerController::class, 'handle']);
+
 
 Route::get('send-email',  [SendMailController::class, 'sendMail']);
 Route::post('send-email', [SendMailController::class, 'store'])->name('store.mail');
