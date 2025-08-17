@@ -18,6 +18,7 @@ class NewOrderPlaced implements ShouldBroadcast
 
     public function __construct($message)
     {
+        info("rtsdfds");
         $this->message = $message;
     }
 
